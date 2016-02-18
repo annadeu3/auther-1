@@ -9,6 +9,9 @@ app.use(session({
 }));
 
 app.use(function (req, res, next) {
+    if (!req.session.num) {
+        req.session.num = Math.floor(Math.random() * 100)
+    }
     console.log('session', req.session);
     next();
 });
@@ -27,25 +30,6 @@ app.use(require('./requestState.middleware'));
 app.use(require('./statics.middleware'));
 
 app.use('/api', require('../api/api.router'));
-
-
-app.post('/login', function (req, res, next) {
-    User.findOne({
-        email: req.body.email,
-        password: req.body.password
-    })
-    .exec()
-    .then(function (user) {
-        if (!user) {
-            res.sendStatus(401);
-        } else {
-            req.session.userId = user._id;
-            res.sendStatus(200);
-        }
-    })
-    .then(null, next);
-});
-
 
 
 var validFrontendRoutes = ['/', '/stories', '/users', '/stories/:id', '/users/:id', '/signup', '/login'];
