@@ -26,6 +26,16 @@ app.factory('Auth', function($http, User) {
 		});
 	};
 
+	Auth.logout = function () {
+		return $http.post('/api/logout', {})
+		.then(function (res) {
+			return res.data;
+		})
+		.then(null, function (err) {
+			console.log(err);
+		})
+	}
+
 	//Auth.
 	return Auth;
 });
