@@ -3,6 +3,7 @@
 var app = require('express')();
 var path = require('path');
 var session = require('express-session');
+var passport = require('passport');
 
 app.use(session({
 	secret: 'tongiscool'
@@ -30,6 +31,9 @@ app.use(require('./requestState.middleware'));
 app.use(require('./statics.middleware'));
 
 app.use('/api', require('../api/api.router'));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 var validFrontendRoutes = ['/', '/stories', '/users', '/stories/:id', '/users/:id', '/signup', '/login'];

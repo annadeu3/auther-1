@@ -11,7 +11,7 @@ var User = require('../users/user.model');
 
 router.post('/', function (req, res, next) {
     req.session.userId = null;
-    console.log("Log out stuff: ", req.session.userId);
+    //console.log("Log out stuff: ", req.session.userId);
     res.status(200).send();
 });
 

@@ -9,6 +9,10 @@ var User = require('../users/user.model');
 
 
 
+router.post('/google', function (req, res, next) {
+    console.log("came from google");
+})
+
 router.post('/', function (req, res, next) {
     User.findOne({
         email: req.body.email,
