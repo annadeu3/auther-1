@@ -12,4 +12,15 @@ app.controller('LogUserCtrl', function ($scope, Auth, $state) {
 
 		})
 	}
+
+	$scope.logout = function () {
+		Auth.logout()
+		.then(function(res) {
+			console.log('I logged out!');
+		})
+		.then(null, function (err) {
+			console.log("LOGOUT ERROR FROM CONTROLLER ", err);
+		})
+	}
+
 })
