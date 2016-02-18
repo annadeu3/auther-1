@@ -54,3 +54,5 @@ User.methods.getStories = function () {
 };
 
 module.exports = db.model('User', User);
+
+
